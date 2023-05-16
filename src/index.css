@@ -1,0 +1,8 @@
+a { cursor: pointer; }
+
+.app-container {
+    min-height: 500px;
+    background-image: url(login.jpg);
+    margin:auto;
+    display:block;
+}
