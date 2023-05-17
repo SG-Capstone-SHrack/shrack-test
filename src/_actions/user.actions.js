@@ -58,23 +58,24 @@ function useUserActions () {
 
     function update(id, params) {
         return fetchWrapper.put(`${baseUrl}/${id}`, params)
-            .then(data => {
+            .then(x => {
+                
                 if (id === auth?.id) {
                     const user = { ...auth, ...params };
                     localStorage.setItem('user', JSON.stringify(user)); //로컬 스토리지 정보 업데이트
                     setAuth(user);
                 }
-                return data;
+                return x;
             });
     }
 
     // 회원 정보 삭제
     function _delete(id) {
-        setUsers(users => users.map(data => {
-            if (data.id === id) 
-                return { ...data, isDeleting: true };
+        setUsers(users => users.map(x => {
+            if (x.id === id) 
+                return { ...x, isDeleting: true };
 
-            return data;
+            return x;
         }));
         return fetchWrapper.delete(`${baseUrl}/${id}`)
             .then(() => {
