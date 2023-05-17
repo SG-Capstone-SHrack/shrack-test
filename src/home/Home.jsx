@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 //import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { authAtom } from '_state';
-import { Button } from 'react-bootstrap';
+//import { Button } from 'react-bootstrap';
 
 function Home() {
     const auth = useRecoilValue(authAtom);
@@ -15,7 +15,7 @@ function Home() {
                 <h2>Weclome to SHrack!</h2>
                 <p>Hi {auth?.username}!</p>
                 <Link to="./my.js"> 
-                  <Button> 녹화 시작 </Button>
+                  <button> 녹화 시작 </button>
                 </Link>
                 <br></br>
             </div>
