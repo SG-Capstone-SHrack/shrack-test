@@ -6,15 +6,18 @@ import { useAlertActions } from '_actions';
 import { history } from '_helpers';
 
 export { Alert };
+
 function Alert() {
     const alert = useRecoilValue(alertAtom);
     const alertActions = useAlertActions();
+
     useEffect(() => {
         const unlisten = history.listen(alertActions.clear);
         return unlisten;
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
     if (!alert) return null;
 
     return (

@@ -1,4 +1,5 @@
-import { useRecoilState, useSetRecoilState, useResetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { useSetRecoilState, useResetRecoilState } from 'recoil';
 import { history, useFetchWrapper } from '_helpers';
 import { authAtom, usersAtom, userAtom } from '_state';
 export { useUserActions };
@@ -9,7 +10,6 @@ function useUserActions () {
     const [auth, setAuth] = useRecoilState(authAtom);
     const setUsers = useSetRecoilState(usersAtom);
     const setUser = useSetRecoilState(userAtom);
-
     return {
         login,
         logout,
@@ -21,7 +21,6 @@ function useUserActions () {
         resetUsers: useResetRecoilState(usersAtom),
         resetUser: useResetRecoilState(userAtom)
     }
-
     function login({ username, password }) {
         return fetchWrapper.post(`${baseUrl}/authenticate`, { username, password })
             .then(user => {
@@ -60,10 +59,10 @@ function useUserActions () {
     }
 
     function _delete(id) {  //데이터 삭제 함수
-        setUsers(users => users.map(data_2 => {
-            if (data_2.id === id) 
-                return { ...data_2, isDeleting: true };
-            return data_2;
+        setUsers(users => users.map(x => {
+            if (x.id === id) 
+                return { ...x, isDeleting: true };
+            return x;
         }));
         return fetchWrapper.delete(`${baseUrl}/${id}`)
             .then(() => {
